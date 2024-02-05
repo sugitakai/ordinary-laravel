@@ -1,0 +1,118 @@
+/*=======================================
+- Panel -
+=======================================*/
+.page-cast-list .panel {
+	min-height: 280px;
+}
+
+.panel {
+	border-radius: 0;
+	box-shadow: none;
+	background-color: transparent;
+}
+
+.panel-naked {
+	padding: 0;
+	background: none;
+	box-shadow: none;
+}
+
+.panel-naked .panel-body {
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+.panel .panel-foot {
+	font-weight: bold;
+}
+
+.panel2 {
+	border-radius: 0;
+	box-shadow: none;
+	background-color: #ffd800;
+	overflow: hidden;
+	margin: 2px;
+	padding: 5px;
+	text-align: center;
+}
+
+.panel2 a {
+	color: black;
+}
+
+/*- Simple Panel -
+=======================================*/
+.panel-simple .panel-title {
+	font-size: 1rem;
+	text-align: center;
+	padding: 5px 0;
+}
+
+.panel-title-name {
+	color: white;
+	font-size: 0.9rem;
+	text-align: center;
+	border-radius: 10px;
+	padding: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 1px;
+	width: 90%;
+}
+
+.panel-title-name-time {
+	color: white;
+	font-size: 0.9rem;
+	text-align: center;
+	border-radius: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 5px;
+	height: 40px;
+	width: 90%;
+}
+
+.panel-title-name-time label {
+	margin-bottom: 0;
+	margin-top: 2px;
+}
+
+.panel-title-pro .panel-title-pro1 .panel-title-pro2 {
+	font-size: 0.8rem;
+}
+
+@media screen and (max-width: 736px) {
+
+	/* 736pxä»¥ä¸‹ç”¨ï¼ˆã‚¹ãƒžãƒ¼ãƒˆãƒ•ã‚©ãƒ³ç”¨ï¼‰ã®è¨˜è¿° */
+	.panel-head {
+		padding-left: 1px;
+		padding-right: 1px;
+	}
+
+	.panel-title-name {
+		font-size: 2.5vw;
+	}
+
+	.panel-title-pro1 {
+		font-size: 2.5vw;
+	}
+
+	.panel-title-pro2 {
+		font-size: 2vw;
+		color: #00571d;
+	}
+}
+
+.panel-head {
+	color: white;
+	text-align: center;
+	background: url(/wp-content/uploads/2020/06/white-1.gif);
+	padding: 3px;
+}
+
+
+.panel-simple .panel-body {
+	padding: 0;
+}
