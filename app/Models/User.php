@@ -36,6 +36,11 @@ class user extends Authenticatable
         'owner'
     ];
 
+    public function image_path()
+    {
+        return '/images/' . $this->profile; // profileはプロフィール画像のファイル名を表す属性です
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -59,6 +64,21 @@ class user extends Authenticatable
     {
         return $this->hasMany(Course::class);
     }
+    public function courses()
+    {
+        return $this->belongsTo(Course::class, 'possible_option_1', 'id');
+    }
+
+    public function courses2()
+    {
+        return $this->belongsTo(Course::class, 'possible_option_2', 'id');
+    }
+
+    public function courses3()
+    {
+        return $this->belongsTo(Course::class, 'possible_option_3', 'id');
+    }
+    
     public function reservations()
     {
         return $this->hasMany(Reservation::class);

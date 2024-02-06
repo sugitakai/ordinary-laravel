@@ -16,7 +16,7 @@
                 </ul>
             </div>
             @endif
-            <form method="POST" action="{{ route('users.update') }}">
+            <form method="POST" enctype="multipart/form-data" action="{{ route('users.update') }}">
                 @csrf
                 @method('PATCH')
                 <div class="mb-3">
@@ -192,7 +192,7 @@
                     </div>
                 </div>
 
-                <input type="file" name="image">
+                <input type="file" name="image_path">
 
                 <div class="mb-3">
                     <label for="owner">操作権限</label>

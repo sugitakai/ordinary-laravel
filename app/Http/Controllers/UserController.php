@@ -102,7 +102,6 @@ class UserController extends Controller
 	 */
 	public function update(Request $request)
 	{
-
 		$validatedData = $request->validate([
 			'name' => 'required|string|max:255',
 			'email' => 'required|string|email|max:255',
@@ -117,12 +116,11 @@ class UserController extends Controller
 			'Remarks_column1' => 'max:100',
 			'Remarks_column2' => 'max:100',
 			'profile' => 'max:500',
-
 			'owner' => 'boolean',
+			'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		]);
 
 		$user = Auth::user();
-
 		$user->name = $validatedData['name'];
 		$user->email = $validatedData['email'];
 		$user->tel_number = $validatedData['tel_number'];
@@ -136,14 +134,22 @@ class UserController extends Controller
 		$user->Remarks_column1 = $validatedData['Remarks_column1'];
 		$user->Remarks_column2 = $validatedData['Remarks_column2'];
 		$user->profile = $validatedData['profile'];
-		// $user->is_deleted = $validatedData['is_deleted'];
 		$user->owner = $validatedData['owner'];
+
+		if ($request->hasFile('image_path')) {
+			$image = $request->file('image_path');
+			$fileName = time() . '_' . $image->getClientOriginalName();
+			$filePath = $image->storeAs('public/images', $fileName);
+			$user->image_path = $fileName;
+		}
+
 		$user->save();
+
 		$users = User::paginate(10);
 		return view('staffs.index', ['users' => $users])->with('message', 'ユーザー情報を変更しました');
 	}
 
-	/**
+	/**		dd($request->file('image_path'));
 	 * ユーザー情報を削除
 	 */
 	public function destroy(string $id)
@@ -179,7 +185,7 @@ class UserController extends Controller
 			'password' => $inputs['password'],
 		]);
 
-		return redirect()->route('staffs.index')->with('message', 'パスワードを変更しました');
+		return redirect()->route('staffs')->with('message', 'パスワードを変更しました');
 	}
 
 	/**

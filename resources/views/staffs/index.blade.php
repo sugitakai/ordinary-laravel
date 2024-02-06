@@ -50,25 +50,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($users as $user)
 						<div class="row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
+							@foreach ($users as $user)
 							<div class="col-md-3 col-xs-4" style="padding-right: 1px;padding-left: 1px;">
-								<a href="{{ route('users.profile', $user->id) }}">
-									<div class="panel panel-simple" style="background-color: transparent;">
-										[
-										<div class="panel-body">
-											![Image](/wp-content/uploads/2024/01/homura_-2.png)
-										</div>
-										<div class="panel-head" style="color: white; text-align: center;">
-											<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
-											<div class="panel-title-pro1 text-body">
-												{{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳
-											</div>
-										</div>
-										]({{ route('users.profile', ['id' => $user->id]) }})
+								[
+								<div class="panel panel-simple" style="background-color: transparent;">
+									<div class="panel-body">
+										![Image]({{ asset('storage/images/'.$user->image_path) }}) </div>
+									<div class="panel-head" style="color: white; text-align: center;">
+										<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
+										<div class="panel-title-pro1 text-body"> {{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳 </div>
 									</div>
-								</a>
-							</div>
+								</div> ]({{ route('users.profile', ['id' => $user->id]) }})
+							</div> @endforeach
+						</div>
+						<div class=" row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
+							@foreach ($users as $user)
 							@auth
 							<tr>
 								<td class="p-2">{{ $user->id }}</td>
@@ -77,9 +74,9 @@
 								<td class="p-2">{{ $user->body_weight }}</td>
 								<td class="p-2">{{ $user->age }}</td>
 								<td class="p-2">{{ $user->sports_history }}</td>
-								<td class="p-2">{{ $user->possible_option_1 }}</td>
-								<td class="p-2">{{ $user->possible_option_2 }}</td>
-								<td class="p-2">{{ $user->possible_option_3 }}</td>
+								<td class="p-2">{{ $user->courses->name }}</td>
+								<td class="p-2">{{ $user->courses2->name }}</td>
+								<td class="p-2">{{ $user->courses3->name }}</td>
 								<td class="p-2">{{ $user->Remarks_column1 }}</td>
 								<td class="p-2">{{ $user->Remarks_column2 }}</td>
 								<td class="p-2">{{ $user->profile }}</td>

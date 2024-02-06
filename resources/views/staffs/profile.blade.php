@@ -14,10 +14,10 @@
 		@foreach ($users as $user)
 		<h2 id="name">{{ $user->name }}</h2>
 		<div id="photo" class="section profile-content">
-			<div><img src="" width="180" height="240" alt=""></div>
-			<div><img src="" width="180" height="240" alt=""></div>
-			<div><img src="" width="180" height="240" alt=""></div>
+			![Image]({{ asset('storage/'.$user->image_path) }})
 		</div>
+		@endforeach
+		@foreach ($users as $user)
 		<div class="container">
 			<div class="profile-content">
 				<div id="pNote" class="section col-md-6">
@@ -39,11 +39,11 @@
 						<dt>備考</dt>
 						<dd>{{ $user->Remarks_column2 }}</dd>
 						<dt>可能OP</dt>
-						<dd>{{ $user->possible_options_1 }}</dd>
+						<dd>{{ $user->courses->name }}</dd>	
 						<dt>可能OP</dt>
-						<dd>{{ $user->possible_options_2 }}</dd>
+						<dd>{{ $user->courses2->name }}</dd>
 						<dt>可能OP</dt>
-						<dd>{{ $user->possible_options_3 }}</dd>
+						<dd>{{ $user->courses3->name }}</dd>
 						<dt>更新日</dt>
 						<dd>{{ $user->created_at }}</dd>
 					</dl>
