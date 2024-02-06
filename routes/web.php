@@ -26,8 +26,9 @@ Route::middleware('auth')->group(function () {
     // 以下はユーザー
     Route::controller(UserController::class)->prefix('users')->as('users.')->group(function () {
         Route::get('/admin', 'admin')->name('admin');
-        Route::get('/staffs/create', 'create')->name('create');
         Route::get('/staffs', 'index')->name('staffs');
+        Route::get('/staffs/create', 'create')->name('create');
+        Route::patch('/staffs/create', 'create')->name('create');
         Route::get('/staffs/edit/{id}', 'edit')->name('edit');
         Route::get('/staffs/profile/{id}', 'show')->name('profile'); //オフィシャルで見れるprofile画面のほう
         Route::patch('/', 'update')->name('update');
@@ -45,7 +46,15 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', 'destroy')->name('courses.destroy');
     });
 });
+//公式ホームページのルーティング
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/staffs', [App\Http\Controllers\UserController::class, 'index'])->name('staffs');
+Route::get('/staffs/profile/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('profile'); //オフィシャルで見れるprofile画面のほう
 Route::get('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'index'])->name('index');
 Route::post('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'store'])->name('store');
-// Route::get('/', [App\Http\Controllers\CourseController::class, 'index'])->name('courses');//一覧読み込むほう
+Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses');//一覧読み込むほう
+
+
+
+
+

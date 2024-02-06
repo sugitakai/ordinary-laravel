@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\Course;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ class UserController extends Controller
 	{
 		$this->middleware('auth')->except(['index', 'show']);
 	}
-	
+
 	public function admin()
 	{
 		return view('staffs.admin');
@@ -28,31 +29,50 @@ class UserController extends Controller
 	{
 		$users = User::paginate(10);
 		$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
-		return view('staffs.index', compact('users' , 'courses'));
+		return view('staffs.index', compact('users', 'courses'));
 	}
 
-	// ユーザー登録
-	public function create(Request $request)
-	{
-		$user = new User;
-		$user->name = $request->name;
-		$user->email = $request->email;
-		$user->password = $request->password;
-		$user->tel_number = $request->tel_number;
-		$user->height = $request->height;
-		$user->body_weight = $request->body_weight;
-		$user->age = $request->age;
-		$user->sports_history = $request->sports_history;
-		$user->ossible_option_1 = $request->possible_option_1;
-		$user->possible_option_2 = $request->possible_option_2;
-		$user->possible_option_3 = $request->possible_option_3;
-		$user->Remarks_column1 = $request->Remarks_column1;
-		$user->Remarks_column2 = $request->Remarks_column2;
-		$user->profile = $request->profile;
-		$user->is_deleted = $request->is_deleted;
-		$user->owner = $request->owner;
-		$user->save();
-	}
+	// // ユーザー登録
+	// public function create(Request $request)
+	// {
+	// 	$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
+	// 	return view('staffs.create', compact('courses'));
+	// 	$validatedData = $request->validate([
+	// 		'name' => 'required|string|max:255',
+	// 		'password' => Hash::make($data['password']),
+	// 		'email' => 'required|string|email|max:255',
+	// 		'tel_number' => ['required', 'string', 'max:255', 'regex:/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/'],
+	// 		'height' => 'numeric|max:999',
+	// 		'body_weight' => 'numeric|max:999',
+	// 		'age' => 'numeric|max:999',
+	// 		'sports_history' => 'max:100',
+	// 		'possible_option_1' => 'max:100',
+	// 		'possible_option_2' => 'max:100',
+	// 		'possible_option_3' => 'max:100',
+	// 		'Remarks_column1' => 'max:100',
+	// 		'Remarks_column2' => 'max:100',
+	// 		'profile' => 'max:500',
+	// 		'owner' => 'boolean',
+	// 	]);
+
+	// 	$user = new User;
+	// 	$user->name = $validatedData['name'];
+	// 	$user->email = $validatedData['email'];
+	// 	$user->tel_number = $validatedData['tel_number'];
+	// 	$user->height = $validatedData['height'];
+	// 	$user->body_weight = $validatedData['body_weight'];
+	// 	$user->age = $validatedData['age'];
+	// 	$user->sports_history = $validatedData['sports_history'];
+	// 	$user->possible_option_1 = $validatedData['possible_option_1'];
+	// 	$user->possible_option_2 = $validatedData['possible_option_2'];
+	// 	$user->possible_option_3 = $validatedData['possible_option_3'];
+	// 	$user->Remarks_column1 = $validatedData['Remarks_column1'];
+	// 	$user->Remarks_column2 = $validatedData['Remarks_column2'];
+	// 	$user->profile = $validatedData['profile'];
+	// 	$user->owner = $validatedData['owner'];
+	// 	$user->save();
+	// 	return view('staffs.index', ['user' => $user])->with('message', '新しいユーザー情報を登録しました');
+	// }
 
 	/**
 	 * ユーザープロフィール
@@ -60,9 +80,9 @@ class UserController extends Controller
 	public function show($id)
 	{
 		$user = User::find($id);
-		return view('staffs.profile', ['user' => $user]);
+		$users = User::where('id', $id)->get();
+		return view('staffs.profile', compact('user', 'users'));
 	}
-
 	/**
 	 * ユーザー編集画面
 	 */
@@ -71,18 +91,18 @@ class UserController extends Controller
 		if (Auth::id() == $id) {
 			$user = User::findOrFail($id);
 			$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
-			return view('staffs.edit', compact('user' , 'courses'))->with(['id' => $id]);
+			return view('staffs.edit', compact('user', 'courses'))->with(['id' => $id]);
 		} else {
 			abort(404, 'Unauthorized');
 		}
 	}
-	
+
 	/**
 	 * ユーザー編集内容を保存dd($request);
 	 */
 	public function update(Request $request)
 	{
-		
+
 		$validatedData = $request->validate([
 			'name' => 'required|string|max:255',
 			'email' => 'required|string|email|max:255',
@@ -97,7 +117,7 @@ class UserController extends Controller
 			'Remarks_column1' => 'max:100',
 			'Remarks_column2' => 'max:100',
 			'profile' => 'max:500',
-			'is_deleted' => 'boolean',
+
 			'owner' => 'boolean',
 		]);
 
@@ -118,7 +138,6 @@ class UserController extends Controller
 		$user->profile = $validatedData['profile'];
 		// $user->is_deleted = $validatedData['is_deleted'];
 		$user->owner = $validatedData['owner'];
-
 		$user->save();
 		$users = User::paginate(10);
 		return view('staffs.index', ['users' => $users])->with('message', 'ユーザー情報を変更しました');

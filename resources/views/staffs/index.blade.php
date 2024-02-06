@@ -27,102 +27,94 @@
 					</div>
 				</form>
 			</div>
-			@auth
-			{{-- ユーザー登録ボタン --}}
-			<div class="col-12 col-md-6 text-end mt-3 mt-md-0">
-				<form method="GET" action="{{ route('users.create') }}">
-					@csrf
-					<button type="submit" class="px-2 btn btn-primary">ユーザー登録</button>
-				</form>
-			</div>
-			@endauth
-		</div>
 
-		<div class="table-responsive">
-			<table class="border w-100 table align-middle" style="table-layout:auto;">
-				<thead class="table-primary">
-					<tr>
-						<th class="p-2" scope="col">ID</th>
-						<th class="p-2 w-25" scope="col">名前</th>
-						<th class="p-2 w-25" scope="col">身長</th>
-						<th class="p-2 w-25" scope="col">体重</th>
-						<th class="p-2 w-25" scope="col">年齢</th>
-						<th class="p-2 w-25" scope="col">スポーツ歴</th>
-						<th class="p-2" scope="col">可能OP</th>
-						<th class="p-2" scope="col">可能OP</th>
-						<th class="p-2" scope="col">可能OP</th>
-						<th class="p-2" scope="col">備考</th>
-						<th class="p-2" scope="col">備考</th>
-						<th class="p-2 w-25" scope="col">詳細</th>
-						<th class="p-2 w-25" scope="col">登録日</th>
-						<th class="p-2 w-25" scope="col">更新日</th>
-						<th class="p-2 text-center" style="width: 15%;" scope="col">操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach ($users as $user)
-					<div class="row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
-						<div class="col-md-3 col-xs-4" style="padding-right: 1px;padding-left: 1px;">
-							<a href="{{ route('users.profile', $user->id) }}">
-								<div class="panel panel-simple" style="background-color: transparent;">
-									[
-									<div class="panel-body">
-										![Image](/wp-content/uploads/2024/01/homura_-2.png)
-									</div>
-									<div class="panel-head" style="color: white; text-align: center;">
-										<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
-										<div class="panel-title-pro1 text-body">
-											{{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳
-										</div>
-									</div>
-									]({{ route('users.profile', ['id' => $user->id]) }})
-								</div>
-							</a>
-						</div>
+			<div class="table-responsive">
+				<table class="border w-100 table align-middle" style="table-layout:auto;">
+					<thead class="table-primary">
 						<tr>
-							<td class="p-2">{{ $user->id }}</td>
-							<td class="p-2">{{ $user->name }}</td>
-							<td class="p-2">{{ $user->height }}</td>
-							<td class="p-2">{{ $user->body_weight }}</td>
-							<td class="p-2">{{ $user->age }}</td>
-							<td class="p-2">{{ $user->sports_history }}</td>
-							<td class="p-2">{{ $user->possible_option_1 }}</td>
-							<td class="p-2">{{ $user->possible_option_2 }}</td>
-							<td class="p-2">{{ $user->possible_option_3 }}</td>
-							<td class="p-2">{{ $user->Remarks_column1 }}</td>
-							<td class="p-2">{{ $user->Remarks_column2 }}</td>
-							<td class="p-2">{{ $user->profile }}</td>
-							<td class="p-2">{{ $user->created_at }}</td>
-							<td class="p-2">{{ $user->updated_at }}</td>
-							@if (Auth::id() == $user->id || Auth::id() ==$user->owner)
-							<td class="p-2">{{ $user->email }}</td>
-							<td class="p-2">{{ $user->tel_number }}</td>
-							<td class="p-2">{{ $user->owner }}</td>
-							@endif
-							<td class="p-2 text-center">
-								<div class="d-flex justify-content-center">
-									<a href="{{ route('users.profile', $user->id) }}">
-										<button class="btn btn-primary btn-sm me-2">詳細</button>
-									</a>
-									@if (Auth::id() == $user->id || Auth::id() ==$user->owner)
-									<!-- route('users/staffs/edit') -->
-									<a href="{{ route('users.edit', $user->id) }}">
-										<button class="btn btn-primary btn-sm me-2">編集</button>
-									</a>
-									<form method="POST" action="{{ route('users.destroy', $user->id) }}">
-										@csrf
-										@method('DELETE')
-										<button class="btn btn-danger btn-sm" onClick="return confirm('本当に削除しますか？');">削除</button>
-									</form>
-									@endif
-								</div>
-							</td>
+							<th class="p-2" scope="col">ID</th>
+							<th class="p-2 w-25" scope="col">名前</th>
+							<th class="p-2 w-25" scope="col">身長</th>
+							<th class="p-2 w-25" scope="col">体重</th>
+							<th class="p-2 w-25" scope="col">年齢</th>
+							<th class="p-2 w-25" scope="col">スポーツ歴</th>
+							<th class="p-2" scope="col">可能OP</th>
+							<th class="p-2" scope="col">可能OP</th>
+							<th class="p-2" scope="col">可能OP</th>
+							<th class="p-2" scope="col">備考</th>
+							<th class="p-2" scope="col">備考</th>
+							<th class="p-2 w-25" scope="col">詳細</th>
+							<th class="p-2 w-25" scope="col">登録日</th>
+							<th class="p-2 w-25" scope="col">更新日</th>
+							<th class="p-2 text-center" style="width: 15%;" scope="col">操作</th>
 						</tr>
-						@endforeach
-				</tbody>
-			</table>
-			{{ $users->links('pagination::bootstrap-5') }}
+					</thead>
+					<tbody>
+						@foreach ($users as $user)
+						<div class="row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
+							<div class="col-md-3 col-xs-4" style="padding-right: 1px;padding-left: 1px;">
+								<a href="{{ route('users.profile', $user->id) }}">
+									<div class="panel panel-simple" style="background-color: transparent;">
+										[
+										<div class="panel-body">
+											![Image](/wp-content/uploads/2024/01/homura_-2.png)
+										</div>
+										<div class="panel-head" style="color: white; text-align: center;">
+											<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
+											<div class="panel-title-pro1 text-body">
+												{{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳
+											</div>
+										</div>
+										]({{ route('users.profile', ['id' => $user->id]) }})
+									</div>
+								</a>
+							</div>
+							@auth
+							<tr>
+								<td class="p-2">{{ $user->id }}</td>
+								<td class="p-2">{{ $user->name }}</td>
+								<td class="p-2">{{ $user->height }}</td>
+								<td class="p-2">{{ $user->body_weight }}</td>
+								<td class="p-2">{{ $user->age }}</td>
+								<td class="p-2">{{ $user->sports_history }}</td>
+								<td class="p-2">{{ $user->possible_option_1 }}</td>
+								<td class="p-2">{{ $user->possible_option_2 }}</td>
+								<td class="p-2">{{ $user->possible_option_3 }}</td>
+								<td class="p-2">{{ $user->Remarks_column1 }}</td>
+								<td class="p-2">{{ $user->Remarks_column2 }}</td>
+								<td class="p-2">{{ $user->profile }}</td>
+								<td class="p-2">{{ $user->created_at }}</td>
+								<td class="p-2">{{ $user->updated_at }}</td>
+								@if (Auth::id() == $user->id || Auth::id() ==$user->owner)
+								<td class="p-2">{{ $user->email }}</td>
+								<td class="p-2">{{ $user->tel_number }}</td>
+								<td class="p-2">{{ $user->owner }}</td>
+								@endif
+								<td class="p-2 text-center">
+									<div class="d-flex justify-content-center">
+										<a href="{{ route('users.profile', $user->id) }}">
+											<button class="btn btn-primary btn-sm me-2">詳細</button>
+										</a>
+										@if (Auth::id() == $user->id || Auth::id() ==$user->owner)
+										<!-- route('users/staffs/edit') -->
+										<a href="{{ route('users.edit', $user->id) }}">
+											<button class="btn btn-primary btn-sm me-2">編集</button>
+										</a>
+										<form method="POST" action="{{ route('users.destroy', $user->id) }}">
+											@csrf
+											@method('DELETE')
+											<button class="btn btn-danger btn-sm" onClick="return confirm('本当に削除しますか？');">削除</button>
+										</form>
+										@endif
+									</div>
+								</td>
+							</tr>
+							@endauth
+							@endforeach
+					</tbody>
+				</table>
+				{{ $users->links('pagination::bootstrap-5') }}
+			</div>
 		</div>
 	</div>
-</div>
-@endsection
+	@endsection

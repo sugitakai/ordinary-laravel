@@ -64,7 +64,7 @@
                 <div class="mb-3">
                     <label for="height">身長</label>
                     <div>
-                        <input id="height" type="text" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') ?? $user->name }}" autocomplete="height" autofocus>
+                        <input id="height" type="text" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') ?? $user->height }}" autocomplete="height" autofocus>
                         @error('height')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -191,6 +191,8 @@
                         @enderror
                     </div>
                 </div>
+
+                <input type="file" name="image">
 
                 <div class="mb-3">
                     <label for="owner">操作権限</label>
