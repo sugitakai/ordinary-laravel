@@ -20,6 +20,13 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+//公式ホームページのルーティング
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/staffs', [App\Http\Controllers\UserController::class, 'index'])->name('staffs');
+Route::get('/staffs/profile/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('profile'); //オフィシャルで見れるprofile画面のほう
+Route::get('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'index'])->name('index');
+Route::post('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'store'])->name('store');
+Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses');//一覧読み込むほう
 
 Auth::routes();
 Route::middleware('auth')->group(function () {
@@ -46,13 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', 'destroy')->name('courses.destroy');
     });
 });
-//公式ホームページのルーティング
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/staffs', [App\Http\Controllers\UserController::class, 'index'])->name('staffs');
-Route::get('/staffs/profile/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('profile'); //オフィシャルで見れるprofile画面のほう
-Route::get('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'index'])->name('index');
-Route::post('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'store'])->name('store');
-Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses');//一覧読み込むほう
+
 
 
 
