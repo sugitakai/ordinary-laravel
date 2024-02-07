@@ -104,7 +104,6 @@
 										<label for="start_time1">希望時間1</label>
 										<select name="start_time1" required>
 											<option value="--"> -- </option>
-											<option value="11:00"> 11時 </option>
 											<option value="12:00"> 12時 </option>
 											<option value="13:00"> 13時 </option>
 											<option value="14:00"> 14時 </option>
@@ -124,7 +123,6 @@
 										<label for="start_time2">希望時間2</label>
 										<select name="start_time2" required>
 											<option value="--"> -- </option>
-											<option value="11:00"> 11時 </option>
 											<option value="12:00"> 12時 </option>
 											<option value="13:00"> 13時 </option>
 											<option value="14:00"> 14時 </option>

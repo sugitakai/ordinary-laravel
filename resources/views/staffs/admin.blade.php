@@ -33,8 +33,8 @@
 			<th>メールアドレス</th>
 			<th>希望施術場所</th>
 			<th>施術希望日1</th>
-			<th>施術希望日2</th>
 			<th>希望時間1</th>
+			<th>施術希望日2</th>
 			<th>希望時間2</th>
 			<th>希望コース</th>
 			<th>追加OP1</th>
@@ -60,8 +60,8 @@
 				<td class="p-2">{{ $Reservation->email }}</td>
 				<td class="p-2">{{ $Reservation->location }}</td>
 				<td class="p-2">{{ $Reservation->reservation_date1 }}</td>
-				<td class="p-2">{{ $Reservation->reservation_date2 }}</td>
 				<td class="p-2">{{ $Reservation->start_time1 }}</td>
+				<td class="p-2">{{ $Reservation->reservation_date2 }}</td>
 				<td class="p-2">{{ $Reservation->start_time2 }}</td>
 				<td class="p-2">{{ $Reservation->mainCourse->name }}</td>
 				<td class="p-2">{{ optional($Reservation->add_option1)->name }}</td>
