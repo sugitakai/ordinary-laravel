@@ -31,31 +31,69 @@
 			<th>名前</th>
 			<th>電話番号</th>
 			<th>メールアドレス</th>
-			<th>希望コース</th>
 			<th>希望施術場所</th>
-			<th>希望セラピスト1</th>
-			<th>希望セラピスト2</th>
 			<th>施術希望日1</th>
 			<th>施術希望日2</th>
 			<th>希望時間1</th>
 			<th>希望時間2</th>
+			<th>希望コース</th>
 			<th>追加OP1</th>
 			<th>追加OP2</th>
 			<th>追加OP3</th>
+			<th>希望セラピスト1</th>
+			<th>希望セラピスト2</th>
 			<th>施術所要時間</th>
 			<th>要望</th>
-			<th>予約ステータス</th>
 			<th>登録日時</th>
 			<th>更新日時</th>
+			<th>予約ステータス</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td></td>
-		</tr>
-		<tr>
-			<td class="text-center" colspan="5">予約が見つかりません</td>
-		</tr>
+		<div class=" row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
+			@if($Reservations->count() > 0)
+			@foreach ($Reservations as $Reservation)
+			<tr>
+				<td class="p-2">{{ $Reservation->id }}</td>
+				<td class="p-2">{{ $Reservation->name }}</td>
+				<td class="p-2">{{ $Reservation->tel_number }}</td>
+				<td class="p-2">{{ $Reservation->email }}</td>
+				<td class="p-2">{{ $Reservation->location }}</td>
+				<td class="p-2">{{ $Reservation->reservation_date1 }}</td>
+				<td class="p-2">{{ $Reservation->reservation_date2 }}</td>
+				<td class="p-2">{{ $Reservation->start_time1 }}</td>
+				<td class="p-2">{{ $Reservation->start_time2 }}</td>
+				<td class="p-2">{{ $Reservation->mainCourse->name }}</td>
+				<td class="p-2">{{ optional($Reservation->add_option1)->name }}</td>
+				<td class="p-2">{{ optional($Reservation->add_option2)->name }}</td>
+				<td class="p-2">{{ optional($Reservation->add_option3)->name }}</td>
+				<td class="p-2">{{ $Reservation->Therapist_id1->name }}</td>
+				<td class="p-2">{{ $Reservation->Therapist_id2->name }}</td>
+				<td class="p-2">{{ $Reservation->course_time }}</td>
+				<td class="p-2">{{ $Reservation->request }}</td>
+				<td class="p-2">{{ $Reservation->created_at }}</td>
+				<td class="p-2">{{ $Reservation->updated_at }}</td>
+				<td class="p-2">{{ $Reservation->status }}</td>
+				<td class="p-2 text-center">
+					<div class="d-flex justify-content-center">
+						<a href="{{ route('Reservations.edit', $Reservation->id) }}">
+							<button class="btn btn-primary btn-sm me-2">編集</button>
+						</a>
+						<form method="POST" action="{{ route('Reservations.destroy', $Reservation->id) }}">
+							@csrf
+							@method('DELETE')
+							<button class="btn btn-danger btn-sm" onClick="return confirm('本当に削除しますか？');">削除</button>
+						</form>
+					</div>
+				</td>
+			</tr>
+			@endforeach
+			@else
+			<tr>
+				<td class="text-center" colspan="5">カテゴリーが見つかりません</td>
+			</tr>
+			@endif
+		</div>
 	</tbody>
 </table>
 @stop

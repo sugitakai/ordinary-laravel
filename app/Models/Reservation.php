@@ -11,11 +11,6 @@ class Reservation extends Model
 {
 	use HasFactory;
 
-	public function course()
-	{
-		return $this->belongsTo(Course::class);
-	}
-
 	protected $fillable = [
 		'name',
 		'tel_number',
@@ -28,17 +23,53 @@ class Reservation extends Model
 		'Add_option1',
 		'Add_option2',
 		'Add_option3',
+		'course_time',
 		'therapist_id1',
 		'therapist_id2',
 		'flexRadioDefault',
+		'request'
 	];
+
+	public function course()
+	{
+		return $this->belongsTo(Course::class);
+	}
 
 	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}
-// Reservationモデル
 
+
+
+	// Reservationモデル
+	public function mainCourse()
+	{
+		return $this->belongsTo(Course::class, 'course', 'id');
+	}
+	public function Add_option1()
+	{
+		return $this->belongsTo(Course::class, 'Add_option1', 'id');
+	}
+
+	public function Add_option2()
+	{
+		return $this->belongsTo(Course::class, 'Add_option2', 'id');
+	}
+
+	public function Add_option3()
+	{
+		return $this->belongsTo(Course::class, 'Add_option3', 'id');
+	}
+
+	public function Therapist_id1()
+	{
+		return $this->belongsTo(User::class, 'therapist_id1', 'id');
+	}
+	public function Therapist_id2()
+	{
+		return $this->belongsTo(User::class, 'therapist_id2', 'id');
+	}
 public static function checkReservationOverlap($reservationDate1, $reservationDate2, $startTime1, $startTime2)
 {
     $existingReservation = Reservation::where(function ($query) use ($reservationDate1, $startTime1) {

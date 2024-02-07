@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('status', ['予約中', '確定', '施術済み'])->default('予約中'); //予約がどんな状態か判定するカラム 確定で日時セラピストが決まる
-            $table->string('tel_number')->unique();
-            $table->string('email')->unique();
+            $table->string('tel_number');
+            $table->string('email');
             $table->enum('location', ['個室', '出張']);
             //日付 第一希望優先
             $table->date('reservation_date1');

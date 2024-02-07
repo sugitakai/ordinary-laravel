@@ -84,7 +84,7 @@
 
 									<div class="form-group">
 										<label for="name">希望セラピスト2</label>
-										<select class="form-select form-select-sm" aria-label=".form-select-lg example" name="therapist_id2" required> 
+										<select class="form-select form-select-sm" aria-label=".form-select-lg example" name="therapist_id2" required>
 											@foreach ($Users as $User)
 											<option value="{{ $User->id }}">{{ $User->name }}</option>
 											@endforeach
@@ -104,19 +104,19 @@
 										<label for="start_time1">希望時間1</label>
 										<select name="start_time1" required>
 											<option value="--"> -- </option>
-											<option value="1100"> 11時 </option>
-											<option value="1200"> 12時 </option>
-											<option value="1300"> 13時 </option>
-											<option value="1400"> 14時 </option>
-											<option value="1500"> 15時 </option>
-											<option value="1600"> 16時 </option>
-											<option value="1700"> 17時 </option>
-											<option value="1800"> 18時 </option>
-											<option value="1900"> 19時 </option>
-											<option value="2000"> 20時 </option>
-											<option value="2100"> 21時 </option>
-											<option value="2200"> 22時 </option>
-											<option value="2300"> 23時 </option>
+											<option value="11:00"> 11時 </option>
+											<option value="12:00"> 12時 </option>
+											<option value="13:00"> 13時 </option>
+											<option value="14:00"> 14時 </option>
+											<option value="15:00"> 15時 </option>
+											<option value="16:00"> 16時 </option>
+											<option value="17:00"> 17時 </option>
+											<option value="18:00"> 18時 </option>
+											<option value="19:00"> 19時 </option>
+											<option value="20:00"> 20時 </option>
+											<option value="21:00"> 21時 </option>
+											<option value="22:00"> 22時 </option>
+											<option value="23:00"> 23時 </option>
 											<!-- 00分と付ける -->
 										</select>
 									</div>
@@ -124,19 +124,19 @@
 										<label for="start_time2">希望時間2</label>
 										<select name="start_time2" required>
 											<option value="--"> -- </option>
-											<option value="1100"> 11時 </option>
-											<option value="1200"> 12時 </option>
-											<option value="1300"> 13時 </option>
-											<option value="1400"> 14時 </option>
-											<option value="1500"> 15時 </option>
-											<option value="1600"> 16時 </option>
-											<option value="1700"> 17時 </option>
-											<option value="1800"> 18時 </option>
-											<option value="1900"> 19時 </option>
-											<option value="2000"> 20時 </option>
-											<option value="2100"> 21時 </option>
-											<option value="2200"> 22時 </option>
-											<option value="2300"> 23時 </option>
+											<option value="11:00"> 11時 </option>
+											<option value="12:00"> 12時 </option>
+											<option value="13:00"> 13時 </option>
+											<option value="14:00"> 14時 </option>
+											<option value="15:00"> 15時 </option>
+											<option value="16:00"> 16時 </option>
+											<option value="17:00"> 17時 </option>
+											<option value="18:00"> 18時 </option>
+											<option value="19:00"> 19時 </option>
+											<option value="20:00"> 20時 </option>
+											<option value="21:00"> 21時 </option>
+											<option value="22:00"> 22時 </option>
+											<option value="23:00"> 23時 </option>
 											<!-- 00分と付ける -->
 										</select>
 									</div>
@@ -144,6 +144,7 @@
 									<div class="form-group">
 										<label for="Add_option1">追加OP1</label>
 										<select class="form-select form-select-sm" aria-label=".form-select-lg example" name="Add_option1">
+											<option value=""> -- </option>
 											@foreach ($courses as $course)
 											@if ($course->type === 'option')
 											<option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -155,6 +156,7 @@
 									<div class="form-group">
 										<label for="Add_option2">追加OP2</label>
 										<select class="form-select form-select-sm" aria-label=".form-select-lg example" name="Add_option2">
+											<option value=""> -- </option>
 											@foreach ($courses as $course)
 											@if ($course->type === 'option')
 											<option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -166,6 +168,7 @@
 									<div class="form-group">
 										<label for="Add_option3">追加OP3</label>
 										<select class="form-select form-select-sm" aria-label=".form-select-lg example" name="Add_option3">
+											<option value=""> -- </option>
 											@foreach ($courses as $course)
 											@if ($course->type === 'option')
 											<option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -182,6 +185,7 @@
 								<div class="card-footer">
 									<button type="submit" class="btn btn-primary">発注決定</button>
 								</div>
+							</div>
 						</form>
 					</div>
 				</div>

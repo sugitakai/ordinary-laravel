@@ -26,6 +26,9 @@ Route::get('/staffs', [App\Http\Controllers\UserController::class, 'index'])->na
 Route::get('/staffs/profile/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('profile'); //オフィシャルで見れるprofile画面のほう
 Route::get('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'index'])->name('index');
 Route::post('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'store'])->name('store');
+Route::get('/Reservations/Reserve_edit', [App\Http\Controllers\ReservationController::class, 'edit'])->name('Reservations.edit');
+Route::post('/Reservations/Reserve_update', [App\Http\Controllers\ReservationController::class, 'update'])->name('Reservations.update');
+Route::post('/Reservations/Reserve_destroy', [App\Http\Controllers\ReservationController::class, 'destroy'])->name('Reservations.destroy');
 Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses');//一覧読み込むほう
 
 Auth::routes();

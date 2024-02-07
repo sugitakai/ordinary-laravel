@@ -14,10 +14,8 @@
 		@foreach ($users as $user)
 		<h2 id="name">{{ $user->name }}</h2>
 		<div id="photo" class="section profile-content">
-			![Image]({{ asset('storage/'.$user->image_path) }})
+			<img src="{{ asset('storage/images/'.$user->image_path) }}" alt="">
 		</div>
-		@endforeach
-		@foreach ($users as $user)
 		<div class="container">
 			<div class="profile-content">
 				<div id="pNote" class="section col-md-6">
@@ -39,7 +37,7 @@
 						<dt>備考</dt>
 						<dd>{{ $user->Remarks_column2 }}</dd>
 						<dt>可能OP</dt>
-						<dd>{{ $user->courses->name }}</dd>	
+						<dd>{{ $user->courses->name }}</dd>
 						<dt>可能OP</dt>
 						<dd>{{ $user->courses2->name }}</dd>
 						<dt>可能OP</dt>

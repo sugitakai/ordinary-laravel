@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Reservation;
 use App\Http\Controllers\Controller;
 use App\Rules\CurrentPasswordRule;
 use Illuminate\Http\Request;
@@ -19,7 +20,17 @@ class UserController extends Controller
 
 	public function admin()
 	{
-		return view('staffs.admin');
+		$Users = User::all(); // usersテーブルから全てのユーザー情報を取得
+		$courses = Course::all(); // Coursesモデルから全てのコース情報を取得		\Log::channel('daily')->info($Reservations);
+		$Reservations = Reservation::with([
+			'course',
+			'Add_option1',
+			'Add_option2',
+			'Add_option3',
+			'therapist_id1',
+			'therapist_id2'
+		])->get();
+		return view('staffs.admin', compact('Users', 'courses', 'Reservations'));
 	}
 
 	/**
@@ -142,9 +153,7 @@ class UserController extends Controller
 			$filePath = $image->storeAs('public/images', $fileName);
 			$user->image_path = $fileName;
 		}
-
 		$user->save();
-
 		$users = User::paginate(10);
 		return view('staffs.index', ['users' => $users])->with('message', 'ユーザー情報を変更しました');
 	}

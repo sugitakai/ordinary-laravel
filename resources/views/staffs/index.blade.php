@@ -53,16 +53,19 @@
 						<div class="row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
 							@foreach ($users as $user)
 							<div class="col-md-3 col-xs-4" style="padding-right: 1px;padding-left: 1px;">
-								[
-								<div class="panel panel-simple" style="background-color: transparent;">
-									<div class="panel-body">
-										![Image]({{ asset('storage/images/'.$user->image_path) }}) </div>
-									<div class="panel-head" style="color: white; text-align: center;">
-										<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
-										<div class="panel-title-pro1 text-body"> {{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳 </div>
-									</div>
-								</div> ]({{ route('users.profile', ['id' => $user->id]) }})
-							</div> @endforeach
+								<div class="panel panel-simple" style="background-color: transparent; text-align: center">
+									<a href="{{ route('users.profile', ['id' => $user->id]) }}">
+										<div class="panel-body">
+											<img src="{{ asset('storage/images/'.$user->image_path) }}" alt="" style="width:75%;">
+										</div>
+										<div class="panel-head" style="color: white; text-align: center;">
+											<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
+											<div class="panel-title-pro1 text-body"> {{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳 </div>
+										</div>
+									</a>
+								</div>
+							</div>
+							@endforeach
 						</div>
 						<div class=" row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
 							@foreach ($users as $user)

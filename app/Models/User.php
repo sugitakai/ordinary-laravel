@@ -64,6 +64,11 @@ class user extends Authenticatable
     {
         return $this->hasMany(Course::class);
     }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+    
     public function courses()
     {
         return $this->belongsTo(Course::class, 'possible_option_1', 'id');
@@ -78,9 +83,5 @@ class user extends Authenticatable
     {
         return $this->belongsTo(Course::class, 'possible_option_3', 'id');
     }
-    
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class);
-    }
+
 }
