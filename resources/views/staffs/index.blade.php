@@ -1,12 +1,11 @@
 @extends('adminlte::page')
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
-<link rel="stylesheet" href="/css/official_home.css">
 <link rel="stylesheet" href="/css/staffs.index.css">
 @stop
 @section('js')
 @section('content')
-<h1>Sphinx Managements System</h1>
+<h1 class="heading">Sphinx Managements System</h1>
 <div class="container">
 	@if (session()->has('message'))
 	<div class="alert alert-success font-bold" role="alert">
@@ -50,17 +49,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						<div class="row" style="margin-right:0px;margin-left:0px;margin-top:15px;">
+						<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top: 15px;">
 							@foreach ($users as $user)
-							<div class="col-md-3 col-xs-4" style="padding-right: 1px;padding-left: 1px;">
-								<div class="panel panel-simple" style="background-color: transparent; text-align: center">
-									<a href="{{ route('users.profile', ['id' => $user->id]) }}">
+							<div class="col-md-4 col-xs-4" style="padding-right: 1px; padding-left: 1px;">
+								<div class="panel panel-simple" style="background-color: transparent; text-align: center;">
+									<a href="{{ route('profile', ['id' => $user->id]) }}">
 										<div class="panel-body">
 											<img src="{{ asset('storage/images/'.$user->image_path) }}" alt="" style="width:75%;">
 										</div>
 										<div class="panel-head" style="color: white; text-align: center;">
 											<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
 											<div class="panel-title-pro1 text-body"> {{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳 </div>
+										</div>
+										<div class="panel-title-pro1 text-body">{{ $user->Remarks_column1 }} {{ $user->courses->name }}</p>
 										</div>
 									</a>
 								</div>
@@ -85,21 +86,29 @@
 								<td class="p-2">{{ $user->profile }}</td>
 								<td class="p-2">{{ $user->created_at }}</td>
 								<td class="p-2">{{ $user->updated_at }}</td>
-								@if (Auth::id() == $user->id || Auth::id() ==$user->owner)
+								@if (Auth::user()->owner)
 								<td class="p-2">{{ $user->email }}</td>
 								<td class="p-2">{{ $user->tel_number }}</td>
-								<td class="p-2">{{ $user->owner }}</td>
+								<td class="p-2">
+									@if($user->owner == 1)
+									owner
+									@else
+									staff
+									@endif
+								</td>
 								@endif
 								<td class="p-2 text-center">
 									<div class="d-flex justify-content-center">
 										<a href="{{ route('users.profile', $user->id) }}">
 											<button class="btn btn-primary btn-sm me-2">詳細</button>
 										</a>
-										@if (Auth::id() == $user->id || Auth::id() ==$user->owner)
+										@if (Auth::id() == $user->id)
 										<!-- route('users/staffs/edit') -->
 										<a href="{{ route('users.edit', $user->id) }}">
 											<button class="btn btn-primary btn-sm me-2">編集</button>
 										</a>
+										@endif
+										@if (Auth::id() == $user->id || Auth::user()->owner)
 										<form method="POST" action="{{ route('users.destroy', $user->id) }}">
 											@csrf
 											@method('DELETE')

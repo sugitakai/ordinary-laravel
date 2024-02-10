@@ -8,21 +8,24 @@
 
 @section('content')
 <p>こちらマッサージ店 予約管理システムMMSです</p>
-<p>こちらはスタッフ専用ホーム画面になります。予約管理機能も付属しております。</p>
+<p>こちらは店舗管理画面になります。予約管理機能も付属しております。</p>
 <div>
 	本システムの使い方を説明します。
 	<UL>
 		<li>施術メニューを設定しましょう！ 名称・費用・施術種類（選択式）・施術時間を登録してください</li>
 		<li>施術スタッフ情報を作成・編集しましょう！ 編集画面から、ログイン済みのスタッフに追加データを挿入できるようになっています。<br>
 			施術スタッフの情報は外部公式ホームページからお客様から確認できるようになっております。</li>
-		<li>スタッフ専用ホーム画面では外部公式ホームページからお客様より頂いた予約登録を施術予約管理表にて管理できるようになっております<br>
-			こちらに届いた予約内容を確認し問題がなければ予約ステータスを確定へ、施術が終了している場合は施術終了に変更してください</li>
-		<li><!-- シフト設定 --></li>
+		<li>店舗管理画面では外部公式ホームページからお客様より頂いた予約登録を施術予約管理表にて管理できるようになっております<br>
+			こちらに届いた予約内容を確認し問題がなければ予約ステータスを確定へ、施術が終了している場合は施術済みに変更してください<br>
+			もしお客様が希望施術場所、施術希望日1、希望時間1、施術希望日2、希望時間2、希望コースの変更をお求めの際は再度予約し直して頂く様に誘導してください。
+		</li>
 	</UL>
 </div>
-
-
-
+@if (session()->has('message'))
+<div class="alert alert-success font-bold" role="alert">
+	{{ session('message') }}
+</div>
+@endif
 <table class="table table-striped task-table">
 	<thead>
 		<h1>施術予約管理表</h1>
@@ -69,7 +72,7 @@
 				<td class="p-2">{{ optional($Reservation->add_option3)->name }}</td>
 				<td class="p-2">{{ $Reservation->Therapist_id1->name }}</td>
 				<td class="p-2">{{ $Reservation->Therapist_id2->name }}</td>
-				<td class="p-2">{{ $Reservation->course_time }}</td>
+				<td class="p-2">{{ $Reservation->course_time }}時間</td>
 				<td class="p-2">{{ $Reservation->request }}</td>
 				<td class="p-2">{{ $Reservation->created_at }}</td>
 				<td class="p-2">{{ $Reservation->updated_at }}</td>
@@ -90,7 +93,7 @@
 			@endforeach
 			@else
 			<tr>
-				<td class="text-center" colspan="5">カテゴリーが見つかりません</td>
+				<td class="text-center" colspan="5">予約が見つかりません</td>
 			</tr>
 			@endif
 		</div>

@@ -1,23 +1,22 @@
 @extends('adminlte::page')
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
-<link rel="stylesheet" href="/css/official_home.css">
 <link rel="stylesheet" href="/css/profile.css">
 @stop
 @section('js')
 @section('content')
-<h1>Sphinx Managements System</h1>
+<h1 class="heading">Sphinx Managements System</h1>
 
 <div id="content">
-	<h1>プロフィール</h1>
+	<h1 class="heading">プロフィール</h1>
 	<div id="main">
 		@foreach ($users as $user)
-		<h2 id="name">{{ $user->name }}</h2>
+		<h2 id="name" class="heading">{{ $user->name }}</h2>
 		<div id="photo" class="section profile-content">
 			<img src="{{ asset('storage/images/'.$user->image_path) }}" alt="">
 		</div>
 		<div class="container">
-			<div class="profile-content">
+			<div class="profile-content"> 
 				<div id="pNote" class="section col-md-6">
 					<dl id="data" class="list01">
 						@if (Auth::id() == $user->id || Auth::id() ==$user->owner)

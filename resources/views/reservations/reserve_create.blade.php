@@ -3,8 +3,7 @@
 @section('title', '施術予約')
 @section('content')
 @section('css')
-{{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-{{-- <link rel="stylesheet" href="/css/official_home.css"> --}}
+<link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 @section('js')
 <script>
@@ -29,7 +28,7 @@
 						<form method="post" action="{{ route('store') }}">
 							@csrf
 							<div class="form-group bg-light-subtle">
-								<h1>施術予約</h1>
+								<h1 class="heading">施術予約</h1>
 								<div class="card-body">
 									<div class="form-group">
 										<label for="name">名前</label>

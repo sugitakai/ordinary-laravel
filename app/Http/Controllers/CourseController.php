@@ -15,7 +15,8 @@ class CourseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')
+        ->except('index');
     }
 
     /**
@@ -25,7 +26,6 @@ class CourseController extends Controller
     {
         // 商品一覧取得
         $Courses = Course::all();
-
         return view('course.index', compact('Courses'));
     }
 

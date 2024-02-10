@@ -16,6 +16,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @yield('css')
+    @yield('js')
 </head>
 
 <body>
@@ -33,10 +35,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto column-gap-4 me-auto mb-2 mb-lg-0">
                         <li class=" nav-item">
-                            <a href="/courses">コース一覧</a>
+                            <a href="/course_list">コース一覧</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/users/staffs">スタッフ 一覧</a>
+                            <a href="/staffs">スタッフ 一覧</a>
                         </li>
                         <li class="nav-item">
                             <a href="/Reservations.Reserve_create">ご予約</a>
