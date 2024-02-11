@@ -45,6 +45,8 @@
 							<th class="p-2 w-25" scope="col">詳細</th>
 							<th class="p-2 w-25" scope="col">登録日</th>
 							<th class="p-2 w-25" scope="col">更新日</th>
+							<th class="p-2" scope="col">メールアドレス</th>
+							<th class="p-2" scope="col">電話番号</th>
 							<th class="p-2 text-center" style="width: 15%;" scope="col">操作</th>
 						</tr>
 					</thead>

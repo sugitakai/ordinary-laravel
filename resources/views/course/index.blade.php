@@ -14,9 +14,11 @@
                 <h3 class="card-title">施術メニュー 一覧</h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm">
+                        @auth
                         <div class="input-group-append">
                             <a href="{{ route('courses.create') }}" class="btn btn-default">施術メニュー登録</a>
                         </div>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -30,7 +32,9 @@
                             <th>施術時間</th>
                             <th>施術費用</th>
                             <th>詳細</th>
+                            @auth
                             <th>操作</th>
+                            @endauth
                         </tr>
                     </thead>
                     <tbody>
@@ -44,11 +48,13 @@
                             <td>{{ $Course->detail }}</td>
 
                             <td>
+                                @auth
                                 <form method="POST" action="{{ route('courses.destroy', $Course->id) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm" onClick="return confirm('本当に削除しますか？');">削除</button>
                                 </form>
+                                @endauth
                             </td>
                         </tr>
                         @endforeach

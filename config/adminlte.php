@@ -304,7 +304,7 @@ return [
 
         [
             'text' => 'スタッフ一覧',
-            'url'  => '/users/staffs',
+            'url'  => '/staffs',
             'icon' => 'fas fa-user',
         ],
 
