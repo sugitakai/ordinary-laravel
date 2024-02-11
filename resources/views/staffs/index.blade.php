@@ -61,7 +61,9 @@
 											<h3 class="panel-title-name bg-info">{{ $user->name }}</h3>
 											<div class="panel-title-pro1 text-body"> {{ $user->height }}cm {{ $user->body_weight }}kg {{ $user->age }}歳 </div>
 										</div>
-										<div class="panel-title-pro1 text-body">{{ $user->Remarks_column1 }} {{ $user->courses->name }}</p>
+										<div class="panel-title-pro1 text-body">{{ $user->Remarks_column1 }} @if ($user->courses)
+											{{ $user->courses->name }}
+											@endif</p>
 										</div>
 									</a>
 								</div>
@@ -78,9 +80,18 @@
 								<td class="p-2">{{ $user->body_weight }}</td>
 								<td class="p-2">{{ $user->age }}</td>
 								<td class="p-2">{{ $user->sports_history }}</td>
-								<td class="p-2">{{ $user->courses->name }}</td>
-								<td class="p-2">{{ $user->courses2->name }}</td>
-								<td class="p-2">{{ $user->courses3->name }}</td>
+								<td class="p-2">@if ($user->courses)
+									{{ $user->courses->name }}
+									@endif
+								</td>
+								<td class="p-2">@if ($user->courses)
+									{{ $user->courses2->name }}
+									@endif
+								</td>
+								<td class="p-2">@if ($user->courses)
+									{{ $user->courses3->name }}
+									@endif
+								</td>
 								<td class="p-2">{{ $user->Remarks_column1 }}</td>
 								<td class="p-2">{{ $user->Remarks_column2 }}</td>
 								<td class="p-2">{{ $user->profile }}</td>

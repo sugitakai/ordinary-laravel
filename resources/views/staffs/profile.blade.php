@@ -16,7 +16,7 @@
 			<img src="{{ asset('storage/images/'.$user->image_path) }}" alt="">
 		</div>
 		<div class="container">
-			<div class="profile-content"> 
+			<div class="profile-content">
 				<div id="pNote" class="section col-md-6">
 					<dl id="data" class="list01">
 						@if (Auth::id() == $user->id || Auth::id() ==$user->owner)
@@ -36,11 +36,16 @@
 						<dt>備考</dt>
 						<dd>{{ $user->Remarks_column2 }}</dd>
 						<dt>可能OP</dt>
-						<dd>{{ $user->courses->name }}</dd>
+						<dd>@if ($user->courses)
+							{{ $user->courses->name }}@endif
+						</dd>
 						<dt>可能OP</dt>
-						<dd>{{ $user->courses2->name }}</dd>
+						<dd>@if ($user->courses)
+							{{ $user->courses2->name }}@endif
+						</dd>
 						<dt>可能OP</dt>
-						<dd>{{ $user->courses3->name }}</dd>
+						<dd>@if ($user->courses)
+							{{ $user->courses3->name }}@endif</dd>
 						<dt>更新日</dt>
 						<dd>{{ $user->created_at }}</dd>
 					</dl>

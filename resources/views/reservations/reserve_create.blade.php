@@ -95,11 +95,6 @@
 										<input type="date" class="form-control" id="reservation_date1" name="reservation_date1" placeholder="施術希望日1" required>
 									</div>
 									<div class="form-group">
-										<label for="name">施術希望日2</label>
-										<input type="date" class="form-control" id="reservation_date2" name="reservation_date2" placeholder="施術希望日2" required>
-									</div>
-
-									<div class="form-group">
 										<label for="start_time1">希望時間1</label>
 										<select name="start_time1" required>
 											<option value="--"> -- </option>
@@ -117,6 +112,11 @@
 											<option value="23:00"> 23時 </option>
 											<!-- 00分と付ける -->
 										</select>
+									</div>
+									
+									<div class="form-group">
+										<label for="name">施術希望日2</label>
+										<input type="date" class="form-control" id="reservation_date2" name="reservation_date2" placeholder="施術希望日2" required>
 									</div>
 									<div class="form-group">
 										<label for="start_time2">希望時間2</label>

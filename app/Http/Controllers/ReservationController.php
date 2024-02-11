@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Course; // 追加
 use Illuminate\Support\MessageBag;
+use Illuminate\Validation\Rule;
 
 class ReservationController extends Controller
 {
@@ -25,11 +26,11 @@ class ReservationController extends Controller
 		$courses = Course::all(); // Coursesテーブルから全てのコース情報を取得
 		$Reservations = Reservation::all();
 
-		return view('Reservations.Reserve_create', compact('Users', 'courses', 'Reservations' , 'course_time'));
+		return view('Reservations.Reserve_create', compact('Users', 'courses', 'Reservations', 'course_time'));
 	}
 
 	public function store(Request $request)
-	{		
+	{
 		$this->validate($request, [
 			'name' => 'required|max:100',
 			'tel_number' => 'required|max:100',
@@ -58,25 +59,37 @@ class ReservationController extends Controller
 			'therapist_id1' => 'required|max:100',
 			'therapist_id2' => 'required|max:100',
 			'flexRadioDefault' => 'required|max:100', // フォームの項目名を修正
+			'request' => 'max:500'
 		]);
-		
+
 
 		// 予約の競合チェック
 		$reservationDate1 = $request->input('reservation_date1');
-		$reservationDate2 = $request->input('reservation_date2');
+		// $reservationDate2 = $request->input('reservation_date2');
 		$startTime1 = $request->input('start_time1');
-		$startTime2 = $request->input('start_time2');
-		$existingReservation = Reservation::checkReservationOverlap($reservationDate1, $reservationDate2, $startTime1, $startTime2);
+		// $startTime2 = $request->input('start_time2');
+		$therapistId1 = $request->input('therapist_id1');
+		// $therapistId2 = $request->input('therapist_id2');
+		$course = $request->input('course');
+		$course_row = Course::findOrFail($request->input('course'));
+		$course_time = $course_row->time;
 
+		// 予約の重複チェック		dd(checkReservationOverlap()); $reservationDate2, $startTime2, $therapistId2
+		$existingReservation = Reservation::checkReservationOverlap($reservationDate1, $startTime1, $course_time, $therapistId1,);
 		if ($existingReservation) {
 			$errors = new MessageBag(['error' => '選択した施術開始時間は他の予約の施術時間中なので予約できません。']);
 			return redirect()->back()->withErrors($errors)->withInput($request->input());
-
-			// リダイレクト
-			return redirect()->back();
 		}
 
-		// 予約データの作成// $course_time = $request->input('course_time');		dd($request->input('course_id'));
+		// // セラピストの予約不可判定
+		// $therapistUnavailable = Reservation::checkTherapistAvailability($reservationDate1, $reservationDate2, $course_time, $startTime1, $startTime2, $therapistId1, $therapistId2);
+
+		// if ($therapistUnavailable) {
+		// 	$errors = new MessageBag(['error' => '選択した施術時間はセラピストの予約可能時間外です。']);
+		// 	return redirect()->back()->withErrors($errors)->withInput($request->input());
+		// }
+
+		// 予約データの作成// $course_time = $request->input('course_time');		
 		$name = $request->input('name');
 		$tel_number = $request->input('tel_number');
 		$email = $request->input('email');
@@ -84,9 +97,6 @@ class ReservationController extends Controller
 		$reservation_date2 = $request->input('reservation_date2');
 		$start_time1 = $request->input('start_time1');
 		$start_time2 = $request->input('start_time2');
-		$course = $request->input('course');
-		$course_row = Course::findOrFail($request->input('course'));
-		$course_time = $course_row->time;
 		$Add_option1 = $request->input('Add_option1');
 		$Add_option2 = $request->input('Add_option2');
 		$Add_option3 = $request->input('Add_option3');
@@ -119,7 +129,7 @@ class ReservationController extends Controller
 		$Reservations = Reservation::all();
 		return redirect()->route('home')->with(
 			'success',
-			'予約が完了しました。'
+			'予約が完了しました、施術までお待ちください。予約について何かありましたらご連絡させていただきます。'
 		);
 	}
 	/**
@@ -127,64 +137,42 @@ class ReservationController extends Controller
 	 */
 	public function edit(string $id)
 	{
-		if (Auth::id() == $id) {
 			$Reservation = Reservation::findOrFail($id);
 			$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
-			return view('staffs.edit', compact('Reservation', 'courses'))->with(['id' => $id]);
-		} else {
-			abort(404, 'Unauthorized');
-		}
+			$users = User::all();
+			return view('Reservations.reserve_edit', compact('Reservation', 'courses','users'))->with(['id' => $id]);
 	}
 
 	public function update(Request $request)
 	{ //個々の中身は明日核
 		$id = $request->id;
+		$options=['予約中','確定', '施術済み'];
 		$validatedData = $request->validate([
-			'name' => 'required|string|max:255',
-			'email' => 'required|string|email|max:255',
-			'tel_number' => ['required', 'string', 'max:255', 'regex:/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/'],
-			'height' => 'numeric|max:999',
-			'body_weight' => 'numeric|max:999',
-			'age' => 'numeric|max:999',
-			'sports_history' => 'max:100',
-			'possible_option_1' => 'max:100',
-			'possible_option_2' => 'max:100',
-			'possible_option_3' => 'max:100',
-			'Remarks_column1' => 'max:100',
-			'Remarks_column2' => 'max:100',
-			'profile' => 'max:500',
-			'owner' => 'boolean',
-			'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			'status' =>'required', Rule::in($options),
+			'Add_option1' => 'max:100',
+			'Add_option2' => 'max:100',
+			'Add_option3' => 'max:100',
+			'request' => 'max:500'
 		]);
 		$Reservation = Reservation::findOrFail($id);
 		$Reservations = Reservation::where('id', $id)->get();
-		$Reservation->name = $validatedData['name'];
-		$Reservation->email = $validatedData['email'];
-		$Reservation->tel_number = $validatedData['tel_number'];
-		$Reservation->height = $validatedData['height'];
-		$Reservation->body_weight = $validatedData['body_weight'];
-		$Reservation->age = $validatedData['age'];
-		$Reservation->sports_history = $validatedData['sports_history'];
-		$Reservation->possible_option_1 = $validatedData['possible_option_1'];
-		$Reservation->possible_option_2 = $validatedData['possible_option_2'];
-		$Reservation->possible_option_3 = $validatedData['possible_option_3'];
-		$Reservation->Remarks_column1 = $validatedData['Remarks_column1'];
-		$Reservation->Remarks_column2 = $validatedData['Remarks_column2'];
-		$Reservation->profile = $validatedData['profile'];
-		$Reservation->owner = $validatedData['owner'];
-
+		$Reservation->status = $validatedData['status'];
+		$Reservation->Add_option1 = $validatedData['Add_option1'];
+		$Reservation->Add_option2 = $validatedData['Add_option2'];
+		$Reservation->Add_option3 = $validatedData['Add_option3'];
+		$Reservation->request = $validatedData['request'];	
 		$Reservation->save();
 
-		return view('staffs.index', ['Reservations' => $Reservations])->with('message', 'ユーザー情報を変更しました');
+		return view('staffs.admin', ['Reservations' => $Reservations])->with('message', '予約情報を変更しました');
 	}
 
 	/**		dd($request->file('image_path'));
 	 * ユーザー情報を削除
 	 */
-	public function destroy(string $id)
+	public function destroy($id)
 	{
-		$Reservation = Reservation::findOrFail($id);
-		$Reservation->delete();
+		$reservation = Reservation::findOrFail($id);
+		$reservation->delete();
 		return redirect()->back()->with('message', 'Reservationを削除しました');
 	}
 }

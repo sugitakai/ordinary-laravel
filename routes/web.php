@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/search', 'search')->name('search');
     });
     Route::controller(CourseController::class)->prefix('courses')->group(function () {
-        // Route::get('/', 'index')->name('courses'); //一覧読み込むほう
+        Route::get('/', 'index')->name('courses'); //一覧読み込むほう
         Route::get('/add', 'add')->name('courses.create'); //ボタン用
         Route::post('/add', 'add')->name('courses.create'); //新規作成のほう
         // Route::get('/edit/{id}', 'edit')->name('courses.edit');

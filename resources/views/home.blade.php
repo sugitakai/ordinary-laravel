@@ -14,7 +14,7 @@
 <div id="app">
     <div class="container">
         <div class="row">
-            @if (session()->has('message'))
+            @if (session()->has('success'))
             <div class="alert alert-success font-bold" role="alert">
                 {{ session('success') }}
             </div>
@@ -127,39 +127,31 @@
                     </ul>
                 </div>
                 <div class="footer_logo bg-black">
-                    <div class="col-6 text-center" style="color: #fff;">
-                        <li>
-                            <a href="#" target="_blank">
-                                <img src="/images/image.png" alt="sphinx_logo">
-                            </a>
-                        </li>
-                        <div class="footer_info" style="color: #fff;">
-                            <div class="info_phone">
-                                <span>お問い合わせ: </span>012-345-6789
-
-                                <span>ご予約については本サイトよりお願いいたします。</span>
-
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 text-center" style="color: #fff;">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <img src="/images/image.png" alt="sphinx_logo">
+                                </a>
+                            </li>
+                            <div class="footer_info" style="color: #fff;">
+                                <div class="info_phone">
+                                    <span>お問い合わせ: </span>012-345-6789<br>
+                                    <span>ご予約については本サイトよりお願いいたします。</span>
+                                </div>
+                                東京都新宿区百人町｜JR総武線 大久保駅すぐ
+                                営業時間：年中無休 12:00 - 24:00
+                                定休日：不定休
                             </div>
-
-                            東京都新宿区百人町｜JR総武線 大久保駅すぐ
-
-                            営業時間：年中無休 12:00 - 24:00
-
-                            定休日：不定休
-                        </div>
-                    </div>
-                    <div class="col-6 text-center" style="color: #fff;">
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <!-- Left Side Of Navbar -->
-                            <ul class="navbar-nav me-auto column-gap-4 me-auto mb-2 mb-lg-0">
+                            <ul class="footer-ul mx-auto list-unstyled nav">
                                 <li class="nav-item">
-                                    [コース一覧](/courses)
+                                    <span><a class="nav-link" href="/course_list" style="color: #fff;">コース一覧</a></span>
                                 </li>
                                 <li class="nav-item">
-                                    [スタッフ一覧](/users/staffs)
+                                    <span><a class="nav-link" href=" /staffs" style="color: #fff;">スタッフ 一覧</a></span>
                                 </li>
                                 <li class="nav-item">
-                                    [ご予約](/Reservations.Reserve_create)
+                                    <span><a class="nav-link" href="/Reservations.Reserve_create" style="color: #fff;">ご予約</a></span>
                                 </li>
                             </ul>
                         </div>
