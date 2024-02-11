@@ -17,7 +17,7 @@ class ReservationController extends Controller
 		$Users = User::all(); // usersテーブルから全てのユーザー情報を取得
 		$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
 		$Reservations = Reservation::all();
-		return view('Reservations.Reserve_create', compact('Users', 'Reservations', 'courses'));
+		return view('Reservations.Reserve_create', compact('Users', 'courses'));
 	}
 
 	public function create(Request $request)
