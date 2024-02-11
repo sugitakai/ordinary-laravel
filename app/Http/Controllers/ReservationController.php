@@ -16,7 +16,6 @@ class ReservationController extends Controller
 	{
 		$Users = User::all(); // usersテーブルから全てのユーザー情報を取得
 		$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
-		$Reservations = Reservation::all();
 		return view('Reservations.Reserve_create', compact('Users', 'courses'));
 	}
 
@@ -149,6 +148,8 @@ class ReservationController extends Controller
 		$options=['予約中','確定', '施術済み'];
 		$validatedData = $request->validate([
 			'status' =>'required', Rule::in($options),
+			'reservation_date2' => 'max:100',
+			'start_time2' => 'max:100',
 			'Add_option1' => 'max:100',
 			'Add_option2' => 'max:100',
 			'Add_option3' => 'max:100',
@@ -157,6 +158,8 @@ class ReservationController extends Controller
 		$Reservation = Reservation::findOrFail($id);
 		$Reservations = Reservation::where('id', $id)->get();
 		$Reservation->status = $validatedData['status'];
+		$reservation_date2 = $request->input('reservation_date2');
+		$start_time2 = $request->input('start_time2');
 		$Reservation->Add_option1 = $validatedData['Add_option1'];
 		$Reservation->Add_option2 = $validatedData['Add_option2'];
 		$Reservation->Add_option3 = $validatedData['Add_option3'];
