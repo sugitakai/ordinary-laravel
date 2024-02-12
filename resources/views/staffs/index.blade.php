@@ -122,7 +122,7 @@
 											<button class="btn btn-primary btn-sm me-2">編集</button>
 										</a>
 										@endif
-										@if (Auth::id() == $user->id || Auth::user()->owner)
+										@if (Auth::user()->owner)
 										<form method="POST" action="{{ route('users.destroy', $user->id) }}">
 											@csrf
 											@method('DELETE')
