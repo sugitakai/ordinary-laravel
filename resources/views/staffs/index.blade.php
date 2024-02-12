@@ -15,6 +15,7 @@
 
 	<div class="p-4 bg-white rounded shadow">
 		<div class="mb-4 row">
+			@auth
 			{{-- 検索フォーム --}}
 			<div class="col-12 col-md-6">
 				<form method="GET" action="{{ route('search') }}">
@@ -25,6 +26,7 @@
 					</div>
 				</form>
 			</div>
+			@endauth
 
 			<div class="table-responsive">
 				<table class="border w-100 table align-middle" style="table-layout:auto;">
