@@ -158,8 +158,8 @@ class ReservationController extends Controller
 		$Reservation = Reservation::findOrFail($id);
 		$Reservations = Reservation::where('id', $id)->get();
 		$Reservation->status = $validatedData['status'];
-		$reservation_date2 = $request->input('reservation_date2');
-		$start_time2 = $request->input('start_time2');
+		$Reservation->reservation_date2 = $validatedData['reservation_date2'];
+		$Reservation->start_time2 = $validatedData['start_time2'];
 		$Reservation->Add_option1 = $validatedData['Add_option1'];
 		$Reservation->Add_option2 = $validatedData['Add_option2'];
 		$Reservation->Add_option3 = $validatedData['Add_option3'];

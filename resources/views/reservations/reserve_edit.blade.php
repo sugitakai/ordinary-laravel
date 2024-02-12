@@ -61,11 +61,11 @@
 				@csrf
 				<div class="form-group">
 					<label for="name">施術希望日2</label>
-					<input type="date" class="form-control" id="reservation_date2" name="reservation_date2" placeholder="施術希望日2" required>
+					<input type="date" class="form-control" id="reservation_date2" name="reservation_date2" placeholder="施術希望日2" >
 				</div>
 				<div class="form-group">
 					<label for="start_time2">希望時間2</label>
-					<select name="start_time2" required>
+					<select name="start_time2" >
 						<option value="--"> -- </option>
 						<option value="12:00"> 12時 </option>
 						<option value="13:00"> 13時 </option>
