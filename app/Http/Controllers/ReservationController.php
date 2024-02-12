@@ -6,7 +6,7 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Course; // 追加
+use App\Models\Course; // 追加 戦闘大文字はクラス名くらい。
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +16,7 @@ class ReservationController extends Controller
 	{
 		$Users = User::all(); // usersテーブルから全てのユーザー情報を取得
 		$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
-		return view('Reservations.Reserve_create', compact('Users', 'courses'));
+		return view('reservations.reserve_create', compact('Users', 'courses'));
 	}
 
 	public function create(Request $request)
@@ -25,7 +25,7 @@ class ReservationController extends Controller
 		$courses = Course::all(); // Coursesテーブルから全てのコース情報を取得
 		$Reservations = Reservation::all();
 
-		return view('Reservations.Reserve_create', compact('Users', 'courses', 'Reservations', 'course_time'));
+		return view('reservations.reserve_create', compact('Users', 'courses', 'Reservations', 'course_time'));
 	}
 
 	public function store(Request $request)
@@ -139,7 +139,7 @@ class ReservationController extends Controller
 			$Reservation = Reservation::findOrFail($id);
 			$courses = Course::all(); // Coursesモデルから全てのコース情報を取得
 			$users = User::all();
-			return view('Reservations.reserve_edit', compact('Reservation', 'courses','users'))->with(['id' => $id]);
+			return view('reservations.reserve_edit', compact('Reservation', 'courses','users'))->with(['id' => $id]);
 	}
 
 	public function update(Request $request)
