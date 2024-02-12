@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 //公式ホームページのルーティング
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/staffs', [App\Http\Controllers\UserController::class, 'index'])->name('staffs');
+Route::get('/staffs/search', [App\Http\Controllers\UserController::class, 'search'])->name('search');
 Route::get('/staffs/profile/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('profile'); //オフィシャルで見れるprofile画面のほう
 Route::get('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'index'])->name('index');
 Route::post('/Reservations.Reserve_create', [App\Http\Controllers\ReservationController::class, 'store'])->name('store');

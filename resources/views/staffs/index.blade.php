@@ -15,10 +15,9 @@
 
 	<div class="p-4 bg-white rounded shadow">
 		<div class="mb-4 row">
-
 			{{-- 検索フォーム --}}
 			<div class="col-12 col-md-6">
-				<form method="GET" action="{{ route('users.search') }}">
+				<form method="GET" action="{{ route('search') }}">
 					@csrf
 					<div class="input-group">
 						<input type="text" class="form-control" name="q" value="{{ request('q') }}" placeholder="ID、名前で検索">
