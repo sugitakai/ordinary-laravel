@@ -292,7 +292,7 @@ return [
     'menu' => [
         [
             'text' => 'コース一覧',
-            'url'  => '/courses',
+            'url'  => '/course_list',
             'icon' => 'fas fa-spa',
         ],
 
