@@ -148,8 +148,6 @@ class ReservationController extends Controller
 		$options=['予約中','確定', '施術済み'];
 		$validatedData = $request->validate([
 			'status' =>'required', Rule::in($options),
-			'reservation_date2' => 'max:100',
-			'start_time2' => 'max:100',
 			'Add_option1' => 'max:100',
 			'Add_option2' => 'max:100',
 			'Add_option3' => 'max:100',
@@ -158,8 +156,6 @@ class ReservationController extends Controller
 		$Reservation = Reservation::findOrFail($id);
 		$Reservations = Reservation::where('id', $id)->get();
 		$Reservation->status = $validatedData['status'];
-		$Reservation->reservation_date2 = $validatedData['reservation_date2'];
-		$Reservation->start_time2 = $validatedData['start_time2'];
 		$Reservation->Add_option1 = $validatedData['Add_option1'];
 		$Reservation->Add_option2 = $validatedData['Add_option2'];
 		$Reservation->Add_option3 = $validatedData['Add_option3'];

@@ -59,29 +59,6 @@
 		<form method="post" action="{{ route('Reservations.update', $Reservation->id) }}">
 			<div class="form-group">
 				@csrf
-				<div class="form-group">
-					<label for="name">施術希望日2</label>
-					<input type="date" class="form-control" id="reservation_date2" name="reservation_date2" placeholder="施術希望日2" >
-				</div>
-				<div class="form-group">
-					<label for="start_time2">希望時間2</label>
-					<select name="start_time2" >
-						<option value="--"> -- </option>
-						<option value="12:00"> 12時 </option>
-						<option value="13:00"> 13時 </option>
-						<option value="14:00"> 14時 </option>
-						<option value="15:00"> 15時 </option>
-						<option value="16:00"> 16時 </option>
-						<option value="17:00"> 17時 </option>
-						<option value="18:00"> 18時 </option>
-						<option value="19:00"> 19時 </option>
-						<option value="20:00"> 20時 </option>
-						<option value="21:00"> 21時 </option>
-						<option value="22:00"> 22時 </option>
-						<option value="23:00"> 23時 </option>
-						<!-- 00分と付ける -->
-					</select>
-				</div>
 				<label for="Add_option1">追加OP1</label>
 				<select class="form-select form-select-sm" aria-label=".form-select-lg example" name="Add_option1">
 					<option value=""> -- </option>
