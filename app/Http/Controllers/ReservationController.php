@@ -161,7 +161,7 @@ class ReservationController extends Controller
 		$Reservation->Add_option3 = $validatedData['Add_option3'];
 		$Reservation->request = $validatedData['request'];	
 		$Reservation->save();
-		return redirect()->route('admin')->with('message', '予約情報を変更しました');
+		return redirect('/users/admin')->with('message', '予約情報を変更しました');
 	}
 
 	/**		dd($request->file('image_path'));
