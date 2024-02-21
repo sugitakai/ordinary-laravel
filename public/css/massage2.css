@@ -4,11 +4,14 @@
 }
 
 .rich_font {
+    font-size: 16px;
     font-weight: 500;
     color: #593306;
     text-align: center;
 }
-
+.item .title{
+    font-size: 16px;
+}
 .index_news .news_list {
     margin: 0;
     padding: 0;

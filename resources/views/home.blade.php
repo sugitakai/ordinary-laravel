@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/css/official_home.css">
 <link rel="stylesheet" href="/css/margin.css">
 <link rel="stylesheet" href="/css/massage2.css">
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 @stop
 @section('js')
 <script src=""></script>
@@ -43,6 +43,70 @@
                         </article>
                     </div><!-- END .news_list -->
                     <p class="button button_font"><a href="#">お知らせ一覧</a></p>
+                </div>
+                <div id="calendar">ここに施術者毎の予約済み施術カレンダー形式で表示される機能
+                    <div class="container mt-5">
+                        <h3 class="container mb-4 d-flex justify-content-center">
+                            <span class="mx-3">2023年 11月</span>
+                            <span class="mx-3">施術者名</span>
+                        </h3>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>日</th>
+                                <th>月</th>
+                                <th>火</th>
+                                <th>水</th>
+                                <th>木</th>
+                                <th>金</th>
+                                <th>土</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td class="today">16</td>
+                                <td>17</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                                <td>22</td>
+                                <td>23</td>
+                                <td>24</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>30</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <div>
                     # ご利用方法
@@ -106,12 +170,12 @@
                                 個室到着後、フロアスタッフがお部屋までご案内致しますので、その際にご料金をお支払いいただきます。その後にスタッフが個室に入室致します。
                             </li>
                         </ul>
+                    </section>
                 </div>
             </section>
 
             <aside class="col-md-6">
-                <a class="twitter-timeline" data-height="1500" href="https://twitter.com/sb1tokyo?ref_src=twsrc%5Etfw">Tweets by sb1tokyo</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
             </aside>
         </div>
         <div class="row justify-content-center">
