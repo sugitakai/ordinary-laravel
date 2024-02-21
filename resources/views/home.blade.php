@@ -132,7 +132,7 @@
                         <div class="col-md-12 text-center" style="color: #fff;">
                             <li>
                                 <a href="#" target="_blank">
-                                    <img src="/images/image.png" alt="sphinx_logo">
+                                    <h1 style="color: #fff;">sphinx</h1>
                                 </a>
                             </li>
                             <div class="footer_info" style="color: #fff;">
