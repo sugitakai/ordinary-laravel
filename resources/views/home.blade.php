@@ -175,7 +175,8 @@
             </section>
 
             <aside class="col-md-6">
-
+                <a class="twitter-timeline" href="https://twitter.com/bdAmDV8eHMYcDA6?ref_src=twsrc%5Etfw" data-height="1500">Tweets by bdAmDV8eHMYcDA6</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </aside>
         </div>
         <div class="row justify-content-center">
