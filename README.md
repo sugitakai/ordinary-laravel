@@ -23,6 +23,6 @@
 
 ## システム閲覧
 
-アプリケーションページへhttps://laravel-indie-product-mms-03083073b5b3.herokuapp.com/
+アプリケーションページへ https://laravel-indie-product-mms-03083073b5b3.herokuapp.com/
 
 ## テストアカウント情報
