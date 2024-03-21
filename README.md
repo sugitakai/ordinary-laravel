@@ -20,10 +20,10 @@ Mysql 14.14
 Laravel 10.13.5
 ```
 ## 設計書
-[要件定義書ページへ](https://docs.google.com/spreadsheets/d/1R1rog_QaXvGXKG6BxYebUMm6cEpIuVNL/edit#gid=532863251)
-[基本設計書ページへ](https://docs.google.com/spreadsheets/d/1IXeSbL47mbC5Jmpx7BBMXABpzOW_aXop/edit#gid=1405020473)
-[画面設計書ページへ](https://docs.google.com/spreadsheets/d/1aM1FagSONjEFAR1G08mGj9KW1e74NTmP/edit#gid=1441342810)
-[データベース定義書ページへ](https://docs.google.com/spreadsheets/d/18D86UpKsYUlWKwuCsBt2MXhgfu2ohGgm/edit#gid=831475615)
+[要件定義書ページへ](https://docs.google.com/spreadsheets/d/166rAqLTlv0iNQEoMvdXcWU7k2DZmrO76/edit?usp=sharing&ouid=115237065520643277812&rtpof=true&sd=true)
+[基本設計書ページへ](https://docs.google.com/spreadsheets/d/1kxGvy1t889e4UqxlIXqPuXQ0IsOgBOEn/edit?usp=drive_link&ouid=115237065520643277812&rtpof=true&sd=true)
+[画面設計書ページへ](https://docs.google.com/spreadsheets/d/1959YcOIXWMyjw4gv2QVneOq9CxkkgpWG/edit?usp=drive_link&ouid=115237065520643277812&rtpof=true&sd=true)
+[データベース定義書ページへ](https://docs.google.com/spreadsheets/d/1QPQGpvv9QbK8_U_DKhuEjgs10cpgt-D4/edit?usp=drive_link&ouid=115237065520643277812&rtpof=true&sd=true)
 
 
 ## システム閲覧
