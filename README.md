@@ -14,9 +14,11 @@
 * 予約メニューの編集と削除機能（店舗管理）
 
 ## 開発環境
-
-
-
+'''
+PHP 8.2.0
+Mysql 14.14
+Laravel 10.13.5
+'''
 ## 設計書
 
 
@@ -26,3 +28,5 @@
 アプリケーションページへ https://laravel-indie-product-mms-03083073b5b3.herokuapp.com/
 
 ## テストアカウント情報
+ID nyusikyo841@ahk.jp
+Pass maintenance
