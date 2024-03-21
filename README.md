@@ -1,43 +1,28 @@
-## 商品管理システム
+## Massage-Management-System
 
-### 環境構築手順
+## 概要
+このシステムではインターネット展開をしていないマッサージ店向けに
+施術予約と店舗情報の管理が出来る公式ホームページを提供出来ます。
 
-* Gitクローン
-* .env.example をコピーして .env を作成
-* MySQLのデータベース作成（名前：item_management）
-* Macの場合 .env の DB_PASSWORD を root に修正（Windowsは修正不要）
+### 主な機能
+* ログイン・ログアウト機能（店舗管理）
+* 顧客向け施術コース一覧画面の表示
+* 施術コースの新規登録、削除、一覧表示機能（店舗管理）
+* スタッフの新規登録、編集、削除、一覧表示機能（店舗管理）
+* 顧客向けスタッフ一覧と詳細情報の表示機能
+* 顧客向け施術の予約登録機能
+* 予約メニューの編集と削除機能（店舗管理）
 
-    ```INI
-    DB_PASSWORD=root
-    ```
+## 開発環境
 
-* APP_KEY生成
 
-    ```console
-    php artisan key:generate
-    ```
 
-* Composerインストール
+## 設計書
 
-    ```console
-    composer install
-    ```
 
-* フロント環境構築
 
-    ```console
-    npm ci
-    npm run build
-    ```
+## システム閲覧
 
-* マイグレーション
+アプリケーションページへhttps://laravel-indie-product-mms-03083073b5b3.herokuapp.com/
 
-    ```console
-    php artisan migrate
-    ```
-
-* 起動
-
-    ```console
-    php artisan serve
-    ```
+## テストアカウント情報
